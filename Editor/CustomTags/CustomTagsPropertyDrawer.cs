@@ -11,7 +11,7 @@ namespace Spyro
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            if(property.propertyType != SerializedPropertyType.String)
+            if (property.propertyType != SerializedPropertyType.String)
             {
                 EditorGUI.HelpBox(position, $"Field is not a string!", MessageType.Error);
                 return;
@@ -26,7 +26,7 @@ namespace Spyro
             }
 
 
-            att.selectedTag = EditorGUI.Popup(position, $"{att.foundTagList.name}'s Tags", att.selectedTag, att.foundTagList.tags.ToArray());
+            att.selectedTag = EditorGUI.Popup(position, property.displayName, att.selectedTag, att.foundTagList.tags.ToArray());
 
             property.stringValue = att.foundTagList.tags[att.selectedTag];
 
