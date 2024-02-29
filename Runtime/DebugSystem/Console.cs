@@ -21,6 +21,8 @@ namespace Spyro.Debug
         private int linesToSave = 35;
 
         private Dictionary<string, ConsoleLog> consoleLines;
+        private List<string> autoCompletionOptions = new List<string>();
+        private int selectedAutoCompletionIndex = 0;
         private void Awake()
         {
             consoleLines = new Dictionary<string, ConsoleLog>();
@@ -108,10 +110,14 @@ namespace Spyro.Debug
 
         private void Update()
         {
+            if (!string.IsNullOrEmpty(userInput))
+            {
+                UpdateAutoCompletion(userInput);
+            }
             if (Input.GetKeyDown(KeyCode.Tilde) || Input.inputString.Contains("\u00A7"))
             {
                 renderConsole = !renderConsole;
-                if(!renderConsole)
+                if (!renderConsole)
                 {
                     userInput = string.Empty;
                     consoleLines.Clear();
@@ -127,14 +133,65 @@ namespace Spyro.Debug
             bgColor.a = 0.75f;
             var inputHeight = 40.0f;
             var style = GetFontStyle(inputHeight / 2.0f, bgColor);
+
             GUI.SetNextControlName("console");
             userInput = GUILayout.TextField(userInput, style, GUILayout.Width(Screen.width), GUILayout.Height(inputHeight));
+            CursorManager.MoveCursorToEnd(userInput);
             GUI.FocusControl("console");
+
+            // Display auto-complete options
+            ViewAutoCompleteOptions(style);
+
+            // Handle arrow key selection for auto-completion
+            TryUpdateAutoComplete();
+
+
+
 
             //string[] lines = consoleOutput.Length == 0 ? default : consoleOutput.ToString().Split('\n');
             consoleScroll = ViewLines(consoleScroll, consoleLines, style);
 
             TryApplyingCommand();
+        }
+
+        private void ViewAutoCompleteOptions(GUIStyle style)
+        {
+            if (autoCompletionOptions.Count > 0)
+            {
+                var reg = CommandSystem.GetCommandRegistry();
+                GUILayout.BeginVertical();
+                foreach (var option in autoCompletionOptions)
+                {
+                    if (GUILayout.Button($"{reg[option].definition}", style))
+                    {
+                        userInput = option;
+                        break;
+                    }
+                }
+                GUILayout.EndVertical();
+            }
+        }
+
+        private void TryUpdateAutoComplete()
+        {
+            if (Event.current.type == EventType.KeyDown)
+            {
+                if (Event.current.keyCode == KeyCode.UpArrow)
+                {
+                    selectedAutoCompletionIndex = Mathf.Max(selectedAutoCompletionIndex - 1, 0);
+                    Event.current.Use();
+                }
+                else if (Event.current.keyCode == KeyCode.DownArrow)
+                {
+                    selectedAutoCompletionIndex = Mathf.Min(selectedAutoCompletionIndex + 1, autoCompletionOptions.Count - 1);
+                    Event.current.Use();
+                }
+                else if (Event.current.keyCode == KeyCode.Tab && autoCompletionOptions.Count > 0)
+                {
+                    userInput = autoCompletionOptions[selectedAutoCompletionIndex];
+                    Event.current.Use();
+                }
+            }
         }
 
         private Vector2 ViewLines(Vector2 scroll, Dictionary<string, ConsoleLog> lines, GUIStyle style)
@@ -195,6 +252,9 @@ namespace Spyro.Debug
                 }
                 userInput = "";
                 CommandSystem.Execute(input[0], args);
+
+                autoCompletionOptions.Clear();
+                selectedAutoCompletionIndex = 0;
             }
         }
 
@@ -212,6 +272,23 @@ namespace Spyro.Debug
             backgroundTexture.Apply();
             style.normal.background = backgroundTexture;
             return style;
+        }
+
+
+        private void UpdateAutoCompletion(string input)
+        {
+            // Add your logic to populate auto-completion options based on user input
+            // For demonstration, let's assume you have a list of available commands
+            autoCompletionOptions.Clear();
+
+            foreach (var data in CommandSystem.GetCommandRegistry())
+            {
+                var command = data.Key;
+                if (command.StartsWith(input, StringComparison.OrdinalIgnoreCase))
+                {
+                    autoCompletionOptions.Add(command);
+                }
+            }
         }
 
     }

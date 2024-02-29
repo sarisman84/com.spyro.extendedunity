@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Spyro
 {
-    public class SerializeableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
+    public class UnityDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
     {
 
         [SerializeField] private List<TKey> keys = new List<TKey>();
