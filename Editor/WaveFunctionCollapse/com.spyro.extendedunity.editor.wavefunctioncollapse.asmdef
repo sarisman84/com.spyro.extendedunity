@@ -1,0 +1,16 @@
+{
+    "name": "com.spyro.extendedunity.editor.wavefunctioncollapse",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b2efea72c5de8d84b853e324f7b5c8fe"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
