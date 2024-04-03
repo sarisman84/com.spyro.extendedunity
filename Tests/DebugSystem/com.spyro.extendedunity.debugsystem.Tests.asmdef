@@ -1,10 +1,10 @@
 {
-    "name": "spyro.extendedunity.debugsystem.tests",
+    "name": "com.spyro.extendedunity.debugsystem.tests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "spyro.extendedunity.debugsystem"
+        "com.spyro.extendedunity.debugsystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

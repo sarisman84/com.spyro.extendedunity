@@ -2,7 +2,8 @@
     "name": "com.spyro.extendedunity.editor.customtags",
     "rootNamespace": "",
     "references": [
-        "GUID:ce54e413ba085514e85f75f0c87fbac2"
+        "GUID:ce54e413ba085514e85f75f0c87fbac2",
+        "GUID:da14cf521e03ddf4baf71fc529f6fa08"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

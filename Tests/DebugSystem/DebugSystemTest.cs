@@ -14,9 +14,10 @@ public class DebugSystemTest
     public void VerifyCommandExecution()
     {
         var test = false;
-        CommandSystem.AddCommand("test", "This is a test command!", "test", (args) => 
+        CommandSystem.AddCommand("test", "This is a test command!", (args) =>
         {
             test = !test;
+            return true;
         });
 
         Assert.IsTrue(CommandSystem.Execute("test"));

@@ -5,19 +5,26 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
-
-
-
 
 
 namespace Spyro.Debug
 {
+    public struct Arg
+    {
+        public object[] values;
+
+        public Arg(params object[] values)
+        {
+            this.values = values;
+        }
+    }
     public struct Command
     {
-        public string definition;
+        public Arg[] arguments;
         public string desc;
-        public Action<object[]> effect;
+        public Func<object[], bool> effect;
     }
     public class CommandSystem
     {
@@ -33,27 +40,69 @@ namespace Spyro.Debug
         }
 
         private Dictionary<string, Command> commandRegistry = new Dictionary<string, Command>();
+        private Dictionary<string, Action<object[]>> keywords = new Dictionary<string, Action<object[]>>();
 
         public static bool HasInitialized => instance != null;
 
-        public static void AddCommand(string syntax, string desc, string def, Action<object[]> effect)
+        public static event Action<string, object[]> onFailedCommandExecution;
+
+        public static void AddCommand(string syntax, string desc, Func<object[], bool> effect, params Arg[] def)
         {
 #if COMMANDSYSTEM
-            instance.commandRegistry.Add(syntax, new Command { definition = def, desc = desc, effect = effect });
+            instance.commandRegistry.Add(syntax, new Command { arguments = def, desc = desc, effect = effect });
 #endif
+        }
+
+        public static void AddKeyword(string keyword, Action<object[]> keywordEvent)
+        {
+#if COMMANDSYSTEM
+            instance.keywords.Add(keyword.ToLower(), keywordEvent);
+#endif
+        }
+
+
+        public static bool TryParseKeyword(object input, params object[] args)
+        {
+#if COMMANDSYSTEM
+            var result = IsInputKeyword(input);
+            if (result)
+            {
+                instance.keywords[(input as string).ToLower()](args);
+            }
+            return result;
+#else
+            return false;
+#endif
+        }
+
+        public static bool IsInputKeyword(object input)
+        {
+#if COMMANDSYSTEM
+            return input is string && instance.keywords.ContainsKey((input as string).ToLower());
+#else
+            return false;
+#endif
+
         }
 
 
         public static bool Execute(string id, params object[] args)
         {
+            var result = false;
 #if COMMANDSYSTEM
+
             if (instance.commandRegistry.ContainsKey(id))
             {
-                instance.commandRegistry[id].effect(args);
-                return true;
+                result = instance.commandRegistry[id].effect(args);
+            }
+
+            if (!result)
+            {
+                onFailedCommandExecution?.Invoke(id, args);
             }
 #endif
-            return false;
+
+            return result;
         }
 
         public static Dictionary<string, Command> GetCommandRegistry()

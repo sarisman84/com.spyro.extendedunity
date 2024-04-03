@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.spyro.extendedunity/Resources/UI/Styles/DebugConsole.uss?fileID=7433441132597879392&amp;guid=ec9f1b2397e2b834c8b373432f4b4349&amp;type=3#DebugConsole" />
+    <ui:ListView name="output_field" virtualization-method="DynamicHeight" class="output background scrollbar output-select" style="flex-grow: 1;" />
+    <ui:ListView name="auto_complete_list" virtualization-method="DynamicHeight" tabindex="0" class="background output scrollbar output-selected" style="flex-grow: 0;" />
+    <ui:TextField picking-mode="Ignore" label="&gt;" value="filler text" name="input_field" class="input-field input-label background" style="margin-top: 0; margin-bottom: 0;" />
+</ui:UXML>

@@ -1,0 +1,46 @@
+.spyro-toggle {
+    width: 20px;
+    left: 0;
+    top: 1.5px;
+    justify-content: flex-start;
+    align-self: auto;
+    -unity-text-align: upper-left;
+    background-image: url("project://database/Assets/UnityDefaultRuntimeTheme.tss?fileID=4154780841294389669&guid=a7502dee553605844adee49d7bc5564c&type=3#arrow-down");
+    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgba(56, 56, 56, 0);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-left-color: rgba(35, 35, 35, 0);
+    border-right-color: rgba(35, 35, 35, 0);
+    border-top-color: rgba(35, 35, 35, 0);
+    border-bottom-color: rgba(35, 35, 35, 0);
+    border-right-width: 0;
+    border-left-width: 0;
+    height: 20px;
+}
+
+.spyro-toggle:hover {
+    background-color: rgb(89, 89, 89);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background-image: url("project://database/Assets/UnityDefaultRuntimeTheme.tss?fileID=4154780841294389669&guid=a7502dee553605844adee49d7bc5564c&type=3#arrow-down");
+    -unity-background-scale-mode: scale-to-fit;
+    width: 20px;
+    height: 20px;
+}
+
+.spyro-toggle:active {
+    background-color: rgb(65, 65, 65);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background-image: url("project://database/Assets/UnityDefaultRuntimeTheme.tss?fileID=4154780841294389669&guid=a7502dee553605844adee49d7bc5564c&type=3#arrow-down");
+    -unity-background-scale-mode: scale-to-fit;
+    width: 20px;
+    height: 20px;
+}

@@ -1,3 +1,16 @@
 {
-	"name": "com.spyro.extendedunity.runtime.recursivescriptableobject"
+    "name": "com.spyro.extendedunity.runtime.recursivescriptableobject",
+    "rootNamespace": "",
+    "references": [
+        "GUID:da14cf521e03ddf4baf71fc529f6fa08"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

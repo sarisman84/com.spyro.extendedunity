@@ -1,7 +1,9 @@
 {
-    "name": "spyro.extendedunity.debugsystem",
+    "name": "com.spyro.extendedunity.debugsystem",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:da14cf521e03ddf4baf71fc529f6fa08"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
