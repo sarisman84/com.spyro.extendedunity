@@ -1,0 +1,17 @@
+.toolbar_icons {
+    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgba(255, 255, 255, 0);
+    flex-grow: 1;
+}
+
+.toolbar_buttons:hover {
+    background-color: rgba(0, 0, 0, 0.46);
+}
+
+.toolbar_buttons:checked {
+    background-color: rgba(166, 166, 166, 0.55);
+}
+
+.toolbar_buttons:focus {
+    background-color: rgba(200, 200, 200, 0.35);
+}

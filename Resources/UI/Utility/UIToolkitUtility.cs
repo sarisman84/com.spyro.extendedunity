@@ -8,6 +8,21 @@ namespace Spyro.UI
 {
     public static class UIToolkitUtility
     {
+        public static StyleSheet GetStyleSheet(string path)
+        {
+#if UNITY_EDITOR
+            var asset = AssetDatabase.LoadAssetAtPath<StyleSheet>($"Packages/com.spyro.extendedunity/Resources/UI/Styles/{path}.uss");
+#else
+            var asset = Resources.Load<StyleSheet>($"UI/Styles/{path}");
+#endif
+            if (asset == null)
+            {
+                throw new System.NullReferenceException($"Could not find asset at path: Packages/com.spyro.extendedunity/Resources/UI/Styles/{path}");
+            }
+
+            return asset;
+        }
+
         public static VisualTreeAsset GetUXML(string path)
         {
 #if UNITY_EDITOR
