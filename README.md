@@ -9,7 +9,15 @@ This repository contains a collection of packages that contain a variety systems
 - State Machine API
 
 ## Editor Features
-- Custom Tags
+- Custom Tags [W.I.P]
 - Recursive ScriptableObject Editors
+
+Further features and improvements are in the works such as:
+- Platform Character Controller
+- Rail System
+
+Lastly, some example scenes are also going to be implemented to help with onboarding.
+
+This is a personal project that i use in most of my projects so updates will come and go.
 
 

@@ -1,8 +1,8 @@
 {
   "name": "com.spyro.extendedunity",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Extended Unity",
-  "description": "A Package that contains several systems that extend the default unity API.",
+  "description": "A Package that contains several systems that extend the default unity API.\nThis is a personal project that i use in most of my projects so updates will come and go.",
   "unity": "2022.3",
   "unityRelease": "20f1",
   "documentationUrl": "DOCUMENTATION.md",
