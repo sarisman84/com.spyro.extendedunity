@@ -56,7 +56,7 @@ namespace Spyro
             };
             fieldDropdown.RegisterCallback<ChangeEvent<int>, DropdownFieldArgs>(UpdateDropdown, args);
 
-            fieldDropdown.value = att.foundTagList.tags[att.selectedTag];
+            fieldDropdown.value = att.foundTagList.tags[Mathf.Max(0, att.selectedTag)];
             fieldDropdown.choices = att.foundTagList.tags;
             fieldDropdown.label = property.displayName;
 

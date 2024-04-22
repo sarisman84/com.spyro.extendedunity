@@ -1,10 +1,8 @@
 {
-    "name": "com.spyro.extendedunity.editor.recursivescriptableobject",
+    "name": "com.spyro.extendedunity.editorutilities",
     "rootNamespace": "",
     "references": [
-        "GUID:3951fc27a45ad694ca398f9db00b4fbb",
-        "GUID:da14cf521e03ddf4baf71fc529f6fa08",
-        "GUID:a89739f163a3dc94b8508358973c23f2"
+        "GUID:37180d43aa4b85c4b9076e2ef48a3b2a"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

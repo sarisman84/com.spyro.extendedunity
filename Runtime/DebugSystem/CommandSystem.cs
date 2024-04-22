@@ -40,7 +40,7 @@ namespace Spyro.Debug
         }
 
         private Dictionary<string, Command> commandRegistry = new Dictionary<string, Command>();
-        private Dictionary<string, Action<object[]>> keywords = new Dictionary<string, Action<object[]>>();
+        private Dictionary<string, Func<object[], object>> keywords = new Dictionary<string, Func<object[], object>>();
 
         public static bool HasInitialized => instance != null;
 
@@ -53,7 +53,7 @@ namespace Spyro.Debug
 #endif
         }
 
-        public static void AddKeyword(string keyword, Action<object[]> keywordEvent)
+        public static void AddKeyword(string keyword, Func<object[], object> keywordEvent)
         {
 #if COMMANDSYSTEM
             instance.keywords.Add(keyword.ToLower(), keywordEvent);
@@ -61,17 +61,17 @@ namespace Spyro.Debug
         }
 
 
-        public static bool TryParseKeyword(object input, params object[] args)
+        public static object ParseKeyword(object input, params object[] args)
         {
 #if COMMANDSYSTEM
             var result = IsInputKeyword(input);
             if (result)
             {
-                instance.keywords[(input as string).ToLower()](args);
+                return instance.keywords[(input as string).ToLower()](args);
             }
-            return result;
+            return null;
 #else
-            return false;
+            return null;
 #endif
         }
 
