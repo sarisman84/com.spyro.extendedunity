@@ -65,7 +65,8 @@ namespace Spyro
 
         public IEnumerator Update()
         {
-            yield return states[currentState].duringState(this);
+            if (states[currentState].duringState != null)
+                yield return states[currentState].duringState(this);
         }
     }
 }

@@ -31,6 +31,7 @@ public class RecursiveScriptableObjectPropertyDrawer : PropertyDrawer
         var subEditorToggle = root.Q<ToolbarToggle>("sub_editor_toggle");
 
         scriptDef.bindingPath = property.propertyPath;
+        scriptDef.Bind(property.serializedObject);
         scriptDef.RegisterValueChangeCallback(OnPropertyUpdated);
 
         var args = new SubEditorArgs
