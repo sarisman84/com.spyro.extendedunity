@@ -1,18 +1,23 @@
 using Spyro.EditorExtensions;
 using Spyro.UI;
-using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 [CustomPropertyDrawer(typeof(RecursiveAttribute))]
 public class RecursiveScriptableObjectPropertyDrawer : PropertyDrawer
 {
+    private static Dictionary<int, bool> _activeStates = new Dictionary<int, bool>();
+    private static Dictionary<int, int> _recursiveCount = new Dictionary<int, int>();
     private ToolbarToggle _subEditorToggle;
     private SerializedProperty _scriptField;
+    private SubEditorArgs _subEditorArgs;
+    private int _maxRenderingCount = 10;
+
+    private static VisualElement _root;
+
     struct SubEditorArgs
     {
         public ScrollView currentSubEditor;
@@ -21,6 +26,23 @@ public class RecursiveScriptableObjectPropertyDrawer : PropertyDrawer
     }
     public override VisualElement CreatePropertyGUI(SerializedProperty property)
     {
+        // if (_root == null)
+        // {
+        //     _root = InitializeProperty(property);
+        // }
+        return InitializeProperty(property);
+    }
+
+    private VisualElement InitializeProperty(SerializedProperty property)
+    {
+        Debug.Log("Recursive Scripting init");
+
+        var hashCode = !property.objectReferenceValue ? -1 : property.objectReferenceValue.GetInstanceID();
+        if (!_activeStates.ContainsKey(hashCode))
+        {
+            _activeStates.Add(hashCode, false);
+        }
+
         var root = new VisualElement();
 
         var uxmlAsset = UIToolkitUtility.GetUXML("URecursiveScriptableEditor");  /*AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.spyro.extendedunity/UI/URecursiveScriptableEditor.uxml");*/
@@ -34,18 +56,22 @@ public class RecursiveScriptableObjectPropertyDrawer : PropertyDrawer
         scriptDef.Bind(property.serializedObject);
         scriptDef.RegisterValueChangeCallback(OnPropertyUpdated);
 
-        var args = new SubEditorArgs
+        _subEditorArgs = new SubEditorArgs
         {
             currentSubEditor = subEditor,
             currentObjectInstance = property.objectReferenceValue,
             currentEditButton = subEditorToggle
         };
-        subEditorToggle.RegisterCallback<ChangeEvent<bool>, SubEditorArgs>(ViewSubEditor, args);
+
+        subEditorToggle.RegisterCallback<ChangeEvent<bool>, SubEditorArgs>((evt, args) => ViewSubEditor(evt, args, hashCode), _subEditorArgs);
         subEditor.style.display = DisplayStyle.None;
         subEditor.verticalScroller.Adjust(0);
 
         _subEditorToggle = subEditorToggle;
         _scriptField = property;
+
+        ViewSubEditor(_subEditorArgs, hashCode);
+
         return root;
     }
 
@@ -54,11 +80,10 @@ public class RecursiveScriptableObjectPropertyDrawer : PropertyDrawer
         _subEditorToggle.style.display = _scriptField.objectReferenceValue != null ? DisplayStyle.Flex : DisplayStyle.None;
     }
 
-    private void ViewSubEditor(ChangeEvent<bool> evt, SubEditorArgs args)
+    private void ViewSubEditor(SubEditorArgs args, int hashCode)
     {
-        var active = evt.newValue;
         args.currentSubEditor.Clear();
-        if (!active || args.currentObjectInstance == null)
+        if (!_activeStates[hashCode] || args.currentObjectInstance == null)
         {
             args.currentSubEditor.verticalScroller.Adjust(0);
             args.currentSubEditor.style.display = DisplayStyle.None;
@@ -77,5 +102,10 @@ public class RecursiveScriptableObjectPropertyDrawer : PropertyDrawer
             propertyField.style.width = new Length(99.6f, LengthUnit.Percent);
             args.currentSubEditor.Add(propertyField);
         }
+    }
+    private void ViewSubEditor(ChangeEvent<bool> env, SubEditorArgs args, int hashCode)
+    {
+        _activeStates[hashCode] = !_activeStates[hashCode];
+        ViewSubEditor(args, hashCode);
     }
 }
