@@ -63,5 +63,5 @@ crashlytics-build.properties
 
 # Custom Ignore Settings
 # Temp
-/[Tt]emp
+/[Rr]esources/[Tt]emp
 
