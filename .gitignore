@@ -61,3 +61,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Custom Ignore Settings
+# Temp
+/[Rr]esources/[Tt]emp
+/[Rr]esources/[Tt]emp.meta
+

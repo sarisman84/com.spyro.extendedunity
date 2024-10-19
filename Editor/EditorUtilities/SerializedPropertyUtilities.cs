@@ -1,5 +1,4 @@
-﻿#if UNITY_EDITOR
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -21,11 +20,12 @@ namespace Spyro.EditorExtensions
         public static IEnumerable<SerializedProperty> FindVisibleChildProperties(this SerializedObject parentObject)
         {
             var iterator = parentObject.GetIterator();
-            iterator.NextVisible(true);
-            do
+            var state = true;
+            while (iterator.NextVisible(state))
             {
                 yield return iterator.Copy();
-            } while (iterator.NextVisible(false));
+                state = false;
+            }
 
 
         }
@@ -87,4 +87,3 @@ namespace Spyro.EditorExtensions
 
     }
 }
-#endif

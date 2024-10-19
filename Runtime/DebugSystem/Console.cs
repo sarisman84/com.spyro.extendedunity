@@ -136,7 +136,7 @@ namespace Spyro.Debug
             var id = args[0] as string;
             var command = commandReg[id];
             var definitions = PrintCommandArguments(command);
-            var msg = $"{id} {definitions} - {command.desc}";
+            var msg = $"{id} {definitions}: {command.desc}";
             return msg;
         }
 
