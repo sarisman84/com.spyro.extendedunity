@@ -4,5 +4,5 @@
         <uie:ToolbarToggle label="Edit" name="sub_editor_toggle" style="position: relative; width: 50px; margin-right: 3px; -unity-text-align: middle-left; justify-content: flex-start; align-self: auto;" />
         <uie:PropertyField name="script_def" style="flex-grow: 1;" />
     </ui:VisualElement>
-    <ui:ScrollView name="sub_editor" horizontal-scroller-visibility="Hidden" nested-interaction-kind="Default" style="flex-grow: 1; height: auto; background-color: rgba(40, 255, 67, 0.1); max-height: 500px; -unity-text-align: upper-left;" />
+    <ui:ScrollView name="sub_editor" horizontal-scroller-visibility="Hidden" nested-interaction-kind="Default" style="flex-grow: 1; height: auto; background-color: rgba(0, 0, 0, 0.23); max-height: 500px; -unity-text-align: upper-left;" />
 </ui:UXML>
