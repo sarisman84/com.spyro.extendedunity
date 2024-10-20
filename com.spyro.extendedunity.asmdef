@@ -1,6 +1,6 @@
 {
     "name": "com.spyro.extendedunity",
-    "rootNamespace": "",
+    "rootNamespace": "Spyro",
     "references": [
         "GUID:b6ea098af01e2414e8868fa86ee78c5d",
         "GUID:c50d006327f68d84c893b64c07ad4c93",
