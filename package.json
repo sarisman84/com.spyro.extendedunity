@@ -6,7 +6,7 @@
   "unity": "2022.3",
   "unityRelease": "20f1",
   "documentationUrl": "DOCUMENTATION.md",
-  "changelogUrl": "",
+  "changelogUrl": "https://github.com/sarisman84/com.spyro.extendedunity/releases",
   "licensesUrl": "",
   "dependencies": {
     "com.unity.inputsystem": "1.7.0",
