@@ -9,7 +9,7 @@
   "changelogUrl": "https://github.com/sarisman84/com.spyro.extendedunity/releases",
   "licensesUrl": "",
   "dependencies": {
-    "com.unity.inputsystem": "1.7.0",
+    "com.unity.inputsystem": "1.11.1",
     "com.unity.nuget.newtonsoft-json": "3.2.1"
   },
   "keywords": [
