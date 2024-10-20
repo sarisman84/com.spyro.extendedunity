@@ -1,0 +1,20 @@
+{
+    "name": "com.spyro.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:152f4737ae7af0041b6f2c67fdc4d57e",
+        "GUID:bd31c24b0b741614291454c018cf7b3c",
+        "GUID:a89739f163a3dc94b8508358973c23f2",
+        "GUID:ce54e413ba085514e85f75f0c87fbac2",
+        "GUID:3951fc27a45ad694ca398f9db00b4fbb"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
