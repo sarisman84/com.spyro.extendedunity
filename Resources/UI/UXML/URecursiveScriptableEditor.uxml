@@ -1,8 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Packages/com.spyro.extendedunity/Resources/UI/Styles/Toolbar_EditorButton.uss?fileID=7433441132597879392&amp;guid=82e3d37c555f8f546bf143e708aeccc3&amp;type=3#Toolbar_EditorButton" />
     <ui:VisualElement name="field" style="flex-grow: 0; flex-direction: row; width: 100%;">
-        <uie:ToolbarToggle label="Edit" name="sub_editor_toggle" style="position: relative; width: 50px; margin-right: 3px; -unity-text-align: middle-left; justify-content: flex-start; align-self: auto;" />
         <uie:PropertyField name="script_def" style="flex-grow: 1;" />
+        <uie:ToolbarToggle label="&#10;" name="sub_editor_toggle" style="position: relative; width: 26px; margin-right: 0; -unity-text-align: middle-center; justify-content: flex-start; align-self: auto; white-space: normal; text-overflow: ellipsis; padding-left: 0; background-image: resource(&apos;UI/Icons/pencil&apos;); -unity-slice-left: 0; -unity-background-scale-mode: scale-to-fit; padding-right: 0; margin-left: 4px; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; margin-bottom: 1px; margin-top: 1px; padding-top: 0;" />
     </ui:VisualElement>
     <ui:ScrollView name="sub_editor" horizontal-scroller-visibility="Hidden" nested-interaction-kind="Default" style="flex-grow: 1; height: auto; background-color: rgba(0, 0, 0, 0.23); max-height: 500px; -unity-text-align: upper-left;" />
 </ui:UXML>
